@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Prueba.models.User;
 import com.example.Prueba.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -30,7 +32,7 @@ public class UserController {
 	
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public User save(@RequestBody User user ) {
+	public User save(@Valid @RequestBody User user ) {
 		return this.userService.saveUser(user);
 	}
 	

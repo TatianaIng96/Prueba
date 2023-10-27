@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Prueba.models.Bill;
 import com.example.Prueba.services.BillService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/bill")
 public class BillController {
@@ -22,7 +24,7 @@ public class BillController {
 	
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public Bill createBill(@RequestBody Bill bill) {
+	public Bill createBill(@Valid @RequestBody Bill bill) {
 		return billService.createdBill(bill);
 	}
 	

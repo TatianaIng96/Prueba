@@ -3,6 +3,7 @@ package com.example.Prueba.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "bills")
@@ -11,7 +12,12 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
   	@Column(unique = true, nullable = false)
     private Long id;
+    
+	@Positive(message = "El monto total debe ser un número positivo.")
     private double totalAmount;
+
+    @NotEmpty(message = "La descripción no puede estar vacía.")
+    @Size(max = 200, message = "La descripción no puede tener más de 200 caracteres.")
     private String description;
 
     @JsonBackReference

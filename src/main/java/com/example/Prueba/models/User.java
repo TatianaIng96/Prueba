@@ -1,6 +1,8 @@
 package com.example.Prueba.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -12,9 +14,14 @@ public class User {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(unique = true, nullable = false)
 	 private Long id;
-	 private String name;
-	 private Integer age;
-	 private String email;
+   	 @NotBlank(message = "El nombre no puede estar en blanco")
+   	 private String name;
+
+     @Min(value = 18, message = "La edad debe ser mayor o igual a 18")
+     private Integer age;
+
+     @Email(message = "Debe ingresar una dirección de correo electrónico válida")
+     private String email;
 	
 	 @JsonManagedReference
 	 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "user")

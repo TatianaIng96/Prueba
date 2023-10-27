@@ -26,7 +26,6 @@ public class BillService {
             if(updatedBill.getDescription()!= null) {
             	bill.setDescription(updatedBill.getDescription());
             }
-
             return billRepository.save(bill);
         } else {
             return null;
