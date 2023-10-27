@@ -15,6 +15,7 @@ public class UserService {
 	UserRepository userRepository;
 	
 	  public ArrayList<User> getUser(){
+		  System.out.println("entró");
 	        return (ArrayList<User>) userRepository.findAll();
 	    }
 
