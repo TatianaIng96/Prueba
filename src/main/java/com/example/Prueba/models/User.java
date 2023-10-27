@@ -3,6 +3,8 @@ package com.example.Prueba.models;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -14,7 +16,8 @@ public class User {
 	 private Integer age;
 	 private String email;
 	
-	 @OneToMany(mappedBy = "user")
+	 @JsonManagedReference
+	 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "user")
 	 private List<Bill> bills;
 	 
 	    public User() {

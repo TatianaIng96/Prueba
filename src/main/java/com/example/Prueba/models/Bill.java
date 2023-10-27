@@ -1,5 +1,7 @@
 package com.example.Prueba.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +14,8 @@ public class Bill {
     private double totalAmount;
     private String description;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "id_user")
     private User user;
 
@@ -41,11 +44,11 @@ public class Bill {
         this.totalAmount = totalAmount;
     }
 
-    public String getdescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setdescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
