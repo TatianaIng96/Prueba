@@ -22,6 +22,11 @@ public class User {
 
      @Email(message = "Debe ingresar una dirección de correo electrónico válida")
      private String email;
+     
+     @NotEmpty
+     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", 
+     	message = "La contraseña debe tener al menos 8 caracteres y contener letras y números.")
+     private String password;
 	
 	 @JsonManagedReference
 	 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "user")
@@ -30,10 +35,11 @@ public class User {
 	    public User() {
 	    }
 
-	    public User(String name, Integer age, String email) {
+	    public User(String name, Integer age, String email, String password) {
 	        this.name = name;
 	        this.age = age;
 	        this.email = email;
+	        this.password = password;
 	    }
 
 	    // Getters y setters
@@ -67,6 +73,13 @@ public class User {
 
 	    public void setEmail(String email) {
 	        this.email = email;
+	    }
+	    public String getPassword() {
+	        return password;
+	    }
+
+	    public void setPassword(String password) {
+	        this.password = password;
 	    }
 
 	    public List<Bill> getBills() {
